@@ -7,17 +7,24 @@ void setup() {
 void draw() {
   background(128);
   
-  float p = millis() / 2000.0;  
-  float size = lerpy(50, 300, p);
+    
+  float size = map(mouseX, 0, width, 50, 300);
   
-  fill(p * 255);
   ellipse(width/2, height/2, size, size);
   
 }
 
+float mappy(float inVal, float inMin, float inMax, float outMin, float outMax) {
+  // Find p
+  float p = (inVal - inMin) / (inMax - inMin);
+  
+  // lerp with p
+  return lerpy(outMin, outMax, p);
+}
+
 // lerp functions (with overloading)
 
-float lerpy(float min, float max, float p) {
+float lerpy(float min, float max, float p){
   return lerpy(min, max, p, true);
 }
 
